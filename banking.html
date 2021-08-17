@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1 class="text-5xl font-semibold text-center my-16">Let's get some <span class="font-extrabold text-5xl text-blue-900">moooooney !!!</span></h1>
+    </header>
+    <main>
+        <section>
+            <div class="grid grid-cols-3 w-3/4 mx-auto gap-8">
+                <div class="bg-green-100 p-16 border-0 rounded-xl">
+                    <h2 class="text-4xl text-center">Deposit</h2>
+                    <h2 class="text-5xl font-semibold text-center mt-4">$<span id="deposit-amount" >00</span></h2>
+                </div>
+                <div class="bg-red-100 p-16 border-0 rounded-xl">
+                    <h2 class="text-4xl text-center">Withdraw</h2>
+                    <h2 class="text-5xl font-semibold text-center mt-4">$<span id="withdraw-amount" >00</span></h2>
+                </div>
+                <div class="bg-blue-100 p-16 border-0 rounded-xl">
+                    <h2 class="text-4xl text-center">Balance</h2>
+                    <h2 class="text-5xl font-semibold text-center mt-4">$<span id="initial-balance" >1250</h2>
+                </div>
+            </div>
+        </section>
+        <section class="mt-8">
+            <div class="grid grid-cols-2 w-3/4 mx-auto gap-8">
+                <div class="bg-yellow-100 p-16 border-0 rounded-xl">
+                    <h2 class="text-4xl ">Deposit</h2>
+                    <input id="new-deposit-amount" class="w-3/4 mt-4 border rounded-lg px-4 py-2" type="text" placeholder="$ amount deposited">
+                    <br>
+                    <button id="deposit-button" class="bg-purple-500 mt-4 border rounded-lg px-4 py-2 text-white font-semibold">Deposit</button>
+                </div>
+                <div class="bg-purple-100 p-16 border-0 rounded-xl">
+                    <h2 class="text-4xl ">Withdraw</h2>
+                    <input id="new-withdraw-amount" class="w-3/4 mt-4 border rounded-lg px-4 py-2" type="text" placeholder="$ amount withdrawn">
+                    <br>
+                    <button id="withdraw-button" class="bg-purple-500 mt-4 border rounded-lg px-4 py-2 text-white font-semibold">Withdraw</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="js/banking.js"></script>
+    <script>
+        document.getElementById('withdraw-button').addEventListener('click', function () {
+            // convert initial withdrawal
+            const withdrawAmount = document.getElementById('withdraw-amount');
+            const withdrawAmountText = withdrawAmount.innerText;
+            const withdrawAmountNumber = parseFloat(withdrawAmountText);
+            // console.log(withdrawAmountNumber);
+
+            // Convert new withdrawal
+            const newWithdrawalAnount = document.getElementById('new-withdraw-amount');
+            const newWithdrawalAnountText = newWithdrawalAnount.value;
+            const newWithdrawalAnountNumber = parseFloat(newWithdrawalAnountText);
+
+            // new withdrawal calculation
+            withdrawAmount.innerText = withdrawAmountNumber + newWithdrawalAnountNumber;
+
+            // convert initial balance
+            const initialBalance = document.getElementById('initial-balance');
+            const initialBalanceTaxt = initialBalance.innerText;
+            const initialBalanceNumber = parseFloat(initialBalanceTaxt);
+
+            // final balance calculation
+            initialBalance.innerText = initialBalanceNumber - newWithdrawalAnountNumber;
+
+
+            // clear input value
+            newWithdrawalAnount.value = '';
+        })
+       
+        
+
+    </script>
+</body>
+</html> 
